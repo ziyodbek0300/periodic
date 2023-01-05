@@ -1,0 +1,168 @@
+tags:
+  - name: admins
+    description: admins API
+
+paths:
+  # [GET] admins
+  /admins:
+    get:
+      tags:
+        - admins
+      summary: Find All admins
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+    # [POST] admins
+    post:
+      tags:
+        - admins
+      summary: Add Admin
+      parameters:
+        - name: body
+          in: body
+          description: admin Data
+          required: true
+          schema:
+            $ref: '#/definitions/admins'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  # [GET] admins/id
+  /admins/{id}:
+    get:
+      tags:
+        - admins
+      summary: Find Admin By Id
+      parameters:
+        - name: id
+          in: path
+          description: Admin Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [PACHT] admins/id
+    pacht:
+      tags:
+        - admins
+      summary: Update Admin By Id
+      parameters:
+        - name: id
+          in: path
+          description: admin Id
+          required: true
+        - name: body
+          in: body
+          description: admin Data
+          required: true
+          schema:
+            $ref: '#/definitions/admins'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [DELETE] admins/id
+    delete:
+      tags:
+        - admins
+      summary: Delete Admin By Id
+      parameters:
+        - name: id
+          in: path
+          description: admin Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  admins:
+    type: object
+    required:
+      - username
+      - password
+    properties:
+      username:
+        type: string
+        description: admin Username
+      password:
+        type: string
+        description: admin Password
+  elements:
+    type: object
+    required:
+      - symbol
+      - name
+      - atomicNumber
+      - group
+      - period
+      - category
+      - discovBy
+      - discovYear
+      - discovCountry
+      - flag
+      - atomicProp
+    properties:
+      symbol:
+        type: string
+        description: element Symbol
+      name:
+        type: string
+        description: element Name
+      atomicNumber:
+        type: number
+        description: element Atomic Number
+      group:
+        type: number
+        description: element Group
+      period:
+        type: number
+        description: element Period
+      category:
+        type: string
+        description: element Category
+      discovBy:
+        type: string
+        description: element DiscovBy
+      discovYear:
+        type: string
+        description: element DiscovYear
+      discovCountry:
+        type: string
+        description: element DiscovCountry
+      flag:
+        type: string
+        description: element Flag
+      atomicProp:
+        type: string
+        description: element AtomicProp
+
+schemes:
+  - https
+  - http
